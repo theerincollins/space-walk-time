@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      availableTimes: []
+    }
+  }
+
+  componentDidMount() {
+    this.getList();
+  }
+
+  getList = async () => {
+    const response = await fetch('/astronaut/time_slots');
+    const availableTimes = await response.json();
+    console.log(availableTimes);
+    this.setState({ availableTimes });
+  }
+
+  render() {
+    const { availableTimes } = this.state;
+
+    return (
+      <div className="App">
+        <header className="App-header">
+          <p> {JSON.stringify(availableTimes)}</p>
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;
