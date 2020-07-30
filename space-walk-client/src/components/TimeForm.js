@@ -41,11 +41,12 @@ export default class TimeForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>When would you like space person to walk?
-          <select value={this.state.selectedTime} onChange={this.handleChange}>
-            {this.props.availableTimes.map(timeSlot => <option key={timeSlot.id} value={timeSlot}>{timeSlot.start_time}</option>)}
+        <label>When would you like space person to walk?</label><br></br>
+          <select onChange={this.handleChange}>
+            <option disabled selected value></option>
+            {this.props.availableTimes.map(timeSlot => <option key={timeSlot.id} value={timeSlot.id}>{timeSlot.start_time}</option>)}
           </select>
-        </label>
+          <br></br>
         <input type="submit" value="Walk On!" />
       </form>
     )
