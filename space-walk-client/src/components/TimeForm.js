@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class TimeForm extends React.Component {
+export default class TimeForm extends Component {
   constructor(props) {
     super(props);
     this.state = { selectedTime: 0 };
@@ -10,11 +10,20 @@ export default class TimeForm extends React.Component {
   }
 
   handleChange(event) {
-
+    this.setState({ selectedTime: event.target.value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: this.state.selectedTime })
+    };
 
+    const response = await fetch('/astronaut/time_slots', requestOptions);
+    const selectedTime = await response.json();
+    alert(`Space Walk Confirmed! ${selectedTime.id}`);
   }
 
   render() {

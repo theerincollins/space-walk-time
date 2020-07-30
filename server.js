@@ -16,6 +16,11 @@ app.get('/astronaut/time_slots', (req, res) => {
   res.send(available_times);
 });
 
+app.post('/astronaut/time_slots', (req, res) => {
+  console.log('in the post');
+  res.send({ id: req.body.id });
+});
+
 app.listen(5000, () => {
   console.log('Things are happening on port 5000');
 });
