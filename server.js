@@ -12,12 +12,10 @@ const available_times = [
 ];
 
 app.get('/astronaut/time_slots', (req, res) => {
-  console.log('in the get');
   res.send(available_times);
 });
 
 app.post('/astronaut/time_slots', (req, res) => {
-  console.log('in the post');
   res.send({ id: req.body.id });
 });
 
