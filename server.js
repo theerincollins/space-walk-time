@@ -5,6 +5,17 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const available_times = [
+  { "id": 2, "start_time": "2020-02-28T16:00:00.000Z" },
+  { "id": 6, "start_time": "2020-02-28T21:00:00.000Z" },
+  { "id": 9, "start_time": "2020-02-28T14:00:00.000Z" }
+];
+
+app.get('/astronaut/time_slots', (req, res) => {
+  console.log('in the get');
+  res.send(available_times);
+});
+
 app.listen(5000, () => {
   console.log('Things are happening on port 5000');
 });
