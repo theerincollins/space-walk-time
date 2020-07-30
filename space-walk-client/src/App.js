@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import TimeForm from './components/TimeForm';
 
 class App extends Component {
   constructor(props) {
@@ -16,7 +17,6 @@ class App extends Component {
   getList = async () => {
     const response = await fetch('/astronaut/time_slots');
     const availableTimes = await response.json();
-    console.log(availableTimes);
     this.setState({ availableTimes });
   }
 
@@ -26,7 +26,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <p> {JSON.stringify(availableTimes)}</p>
+          <TimeForm availableTimes={availableTimes}/>
         </header>
       </div>
     );
